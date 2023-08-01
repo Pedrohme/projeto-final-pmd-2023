@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pymongo = "*"
+python-dotenv = "*"
+pydantic = "*"
+fastapi = "*"
+motor = "*"
+uvicorn = {version = "*", extras = ["standard"]}
+pyspark = "*"
+
+[dev-packages]
+motor-types = "*"
+ipykernel = "*"
+
+[requires]
+python_version = "3.12"
