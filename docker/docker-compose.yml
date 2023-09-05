@@ -1,0 +1,31 @@
+services:
+  jupyter-pyspark:
+    image: jupyter/pyspark-notebook
+    restart: unless-stopped
+    ports:
+      - '8888:8888'
+    volumes:
+      - "../work:/home/jovyan/work"
+      
+  mongo:
+    image: mongo:latest
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-pyspark:/data/db
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass "123"
+    volumes:
+      - redis-pyspark:/data
+
+volumes:
+  mongo-pyspark:
+    driver: local
+  redis-pyspark:
+    driver: local
